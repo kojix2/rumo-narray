@@ -25,4 +25,5 @@ jobs:
         bundler-cache: true
     - name: Run the default task
       run: |
+        bundle exec compile
         bundle exec rake
