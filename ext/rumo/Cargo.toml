@@ -1,0 +1,10 @@
+[package]
+name = "rumo"
+version = "0.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+magnus = "0.4"
+
