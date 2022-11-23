@@ -8,6 +8,7 @@ trait NArray {
     fn _new(dims: Vec<usize>) -> Self;
     fn shape(&self) -> Vec<usize>;
     fn ndim(&self) -> usize;
+    fn length(&self) -> usize;
 }
 
 #[magnus::wrap(class = "Rumo::UInt8")]
@@ -25,6 +26,9 @@ impl NArray for UInt8 {
     }
     fn ndim(&self) -> usize {
         self.nda.ndim()
+    }
+    fn length(&self) -> usize {
+        self.nda.len()
     }
 }
 
@@ -44,6 +48,9 @@ impl Int8 {
     fn ndim(&self) -> usize {
         self.nda.ndim()
     }
+    fn length(&self) -> usize {
+        self.nda.len()
+    }
 }
 
 #[magnus::wrap(class = "Rumo::UInt16")]
@@ -61,6 +68,9 @@ impl UInt16 {
     }
     fn ndim(&self) -> usize {
         self.nda.ndim()
+    }
+    fn length(&self) -> usize {
+        self.nda.len()
     }
 }
 
@@ -80,6 +90,9 @@ impl Int16 {
     fn ndim(&self) -> usize {
         self.nda.ndim()
     }
+    fn length(&self) -> usize {
+        self.nda.len()
+    }
 }
 
 #[magnus::wrap(class = "Rumo::UInt32")]
@@ -97,6 +110,9 @@ impl UInt32 {
     }
     fn ndim(&self) -> usize {
         self.nda.ndim()
+    }
+    fn length(&self) -> usize {
+        self.nda.len()
     }
 }
 
@@ -116,6 +132,9 @@ impl Int32 {
     fn ndim(&self) -> usize {
         self.nda.ndim()
     }
+    fn length(&self) -> usize {
+        self.nda.len()
+    }
 }
 
 #[magnus::wrap(class = "Rumo::UInt64")]
@@ -133,6 +152,9 @@ impl UInt64 {
     }
     fn ndim(&self) -> usize {
         self.nda.ndim()
+    }
+    fn length(&self) -> usize {
+        self.nda.len()
     }
 }
 
@@ -152,6 +174,9 @@ impl Int64 {
     fn ndim(&self) -> usize {
         self.nda.ndim()
     }
+    fn length(&self) -> usize {
+        self.nda.len()
+    }
 }
 
 #[magnus::wrap(class = "Rumo::Float32")]
@@ -169,6 +194,9 @@ impl Float32 {
     }
     fn ndim(&self) -> usize {
         self.nda.ndim()
+    }
+    fn length(&self) -> usize {
+        self.nda.len()
     }
 }
 
@@ -188,6 +216,9 @@ impl Float64 {
     fn ndim(&self) -> usize {
         self.nda.ndim()
     }
+    fn length(&self) -> usize {
+        self.nda.len()
+    }
 }
 
 #[magnus::init]
@@ -198,51 +229,71 @@ fn init() -> Result<(), Error> {
     class_u8.define_singleton_method("_new", function!(UInt8::_new, 1))?;
     class_u8.define_method("shape", method!(UInt8::shape, 0))?;
     class_u8.define_method("ndim", method!(UInt8::ndim, 0))?;
+    class_u8.define_method("length", method!(UInt8::length, 0))?;
+    class_u8.define_method("size", method!(UInt8::length, 0))?;
 
     let class_i8 = module.define_class("Int8", Default::default())?;
     class_i8.define_singleton_method("_new", function!(Int8::_new, 1))?;
     class_i8.define_method("shape", method!(Int8::shape, 0))?;
     class_i8.define_method("ndim", method!(Int8::ndim, 0))?;
+    class_i8.define_method("length", method!(Int8::length, 0))?;
+    class_i8.define_method("size", method!(Int8::length, 0))?;
 
     let class_u16 = module.define_class("UInt16", Default::default())?;
     class_u16.define_singleton_method("_new", function!(UInt16::_new, 1))?;
     class_u16.define_method("shape", method!(UInt16::shape, 0))?;
     class_u16.define_method("ndim", method!(UInt16::ndim, 0))?;
+    class_u16.define_method("length", method!(UInt16::length, 0))?;
+    class_u16.define_method("size", method!(UInt16::length, 0))?;
 
     let class_i16 = module.define_class("Int16", Default::default())?;
     class_i16.define_singleton_method("_new", function!(Int16::_new, 1))?;
     class_i16.define_method("shape", method!(Int16::shape, 0))?;
     class_i16.define_method("ndim", method!(Int16::ndim, 0))?;
+    class_i16.define_method("length", method!(Int16::length, 0))?;
+    class_i16.define_method("size", method!(Int16::length, 0))?;
 
     let class_u32 = module.define_class("UInt32", Default::default())?;
     class_u32.define_singleton_method("_new", function!(UInt32::_new, 1))?;
     class_u32.define_method("shape", method!(UInt32::shape, 0))?;
     class_u32.define_method("ndim", method!(UInt32::ndim, 0))?;
+    class_u32.define_method("length", method!(UInt32::length, 0))?;
+    class_u32.define_method("size", method!(UInt32::length, 0))?;
 
     let class_i32 = module.define_class("Int32", Default::default())?;
     class_i32.define_singleton_method("_new", function!(Int32::_new, 1))?;
     class_i32.define_method("shape", method!(Int32::shape, 0))?;
     class_i32.define_method("ndim", method!(Int32::ndim, 0))?;
+    class_i32.define_method("length", method!(Int32::length, 0))?;
+    class_i32.define_method("size", method!(Int32::length, 0))?;
 
     let class_u64 = module.define_class("UInt64", Default::default())?;
     class_u64.define_singleton_method("_new", function!(UInt64::_new, 1))?;
     class_u64.define_method("shape", method!(UInt64::shape, 0))?;
     class_u64.define_method("ndim", method!(UInt64::ndim, 0))?;
+    class_u64.define_method("length", method!(UInt64::length, 0))?;
+    class_u64.define_method("size", method!(UInt64::length, 0))?;
 
     let class_i64 = module.define_class("Int64", Default::default())?;
     class_i64.define_singleton_method("_new", function!(Int64::_new, 1))?;
     class_i64.define_method("shape", method!(Int64::shape, 0))?;
     class_i64.define_method("ndim", method!(Int64::ndim, 0))?;
+    class_i64.define_method("length", method!(Int64::length, 0))?;
+    class_i64.define_method("size", method!(Int64::length, 0))?;
 
     let class_f32 = module.define_class("Float32", Default::default())?;
     class_f32.define_singleton_method("_new", function!(Float32::_new, 1))?;
     class_f32.define_method("shape", method!(Float32::shape, 0))?;
     class_f32.define_method("ndim", method!(Float32::ndim, 0))?;
+    class_f32.define_method("length", method!(Float32::length, 0))?;
+    class_f32.define_method("size", method!(Float32::length, 0))?;
 
     let class_f64 = module.define_class("Float64", Default::default())?;
     class_f64.define_singleton_method("_new", function!(Float64::_new, 1))?;
     class_f64.define_method("shape", method!(Float64::shape, 0))?;
     class_f64.define_method("ndim", method!(Float64::ndim, 0))?;
+    class_f64.define_method("length", method!(Float64::length, 0))?;
+    class_f64.define_method("size", method!(Float64::length, 0))?;
 
     eval::<bool>("Rumo::SFloat = Rumo::Float32")?;
     eval::<bool>("Rumo::DFloat = Rumo::Float64")?;

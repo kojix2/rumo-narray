@@ -203,4 +203,124 @@ class RumoTest < Test::Unit::TestCase
     assert_equal(3, Rumo::Float64.new(1, 2, 3).ndim)
     assert_equal(3, Rumo::DFloat.new(1, 2, 3).ndim)
   end
+
+  test 'size0' do
+    assert_equal(0, Rumo::UInt8.new(0).size)
+    assert_equal(0, Rumo::Int8.new(0).size)
+    assert_equal(0, Rumo::UInt16.new(0).size)
+    assert_equal(0, Rumo::Int16.new(0).size)
+    assert_equal(0, Rumo::UInt32.new(0).size)
+    assert_equal(0, Rumo::Int32.new(0).size)
+    assert_equal(0, Rumo::UInt64.new(0).size)
+    assert_equal(0, Rumo::Int64.new(0).size)
+    assert_equal(0, Rumo::Float32.new(0).size)
+    assert_equal(0, Rumo::SFloat.new(0).size)
+    assert_equal(0, Rumo::Float64.new(0).size)
+    assert_equal(0, Rumo::DFloat.new(0).size)
+  end
+
+  test 'length0' do
+    assert_equal(0, Rumo::UInt8.new(0).length)
+    assert_equal(0, Rumo::Int8.new(0).length)
+    assert_equal(0, Rumo::UInt16.new(0).length)
+    assert_equal(0, Rumo::Int16.new(0).length)
+    assert_equal(0, Rumo::UInt32.new(0).length)
+    assert_equal(0, Rumo::Int32.new(0).length)
+    assert_equal(0, Rumo::UInt64.new(0).length)
+    assert_equal(0, Rumo::Int64.new(0).length)
+    assert_equal(0, Rumo::Float32.new(0).length)
+    assert_equal(0, Rumo::SFloat.new(0).length)
+    assert_equal(0, Rumo::Float64.new(0).length)
+    assert_equal(0, Rumo::DFloat.new(0).length)
+  end
+
+  test 'size1' do
+    assert_equal(1, Rumo::UInt8.new(1).size)
+    assert_equal(1, Rumo::Int8.new(1).size)
+    assert_equal(1, Rumo::UInt16.new(1).size)
+    assert_equal(1, Rumo::Int16.new(1).size)
+    assert_equal(1, Rumo::UInt32.new(1).size)
+    assert_equal(1, Rumo::Int32.new(1).size)
+    assert_equal(1, Rumo::UInt64.new(1).size)
+    assert_equal(1, Rumo::Int64.new(1).size)
+    assert_equal(1, Rumo::Float32.new(1).size)
+    assert_equal(1, Rumo::SFloat.new(1).size)
+    assert_equal(1, Rumo::Float64.new(1).size)
+    assert_equal(1, Rumo::DFloat.new(1).size)
+  end
+
+  test 'length1' do
+    assert_equal(1, Rumo::UInt8.new(1).length)
+    assert_equal(1, Rumo::Int8.new(1).length)
+    assert_equal(1, Rumo::UInt16.new(1).length)
+    assert_equal(1, Rumo::Int16.new(1).length)
+    assert_equal(1, Rumo::UInt32.new(1).length)
+    assert_equal(1, Rumo::Int32.new(1).length)
+    assert_equal(1, Rumo::UInt64.new(1).length)
+    assert_equal(1, Rumo::Int64.new(1).length)
+    assert_equal(1, Rumo::Float32.new(1).length)
+    assert_equal(1, Rumo::SFloat.new(1).length)
+    assert_equal(1, Rumo::Float64.new(1).length)
+    assert_equal(1, Rumo::DFloat.new(1).length)
+  end
+
+  test 'size2' do
+    assert_equal(2, Rumo::UInt8.new(1, 2).size)
+    assert_equal(2, Rumo::Int8.new(1, 2).size)
+    assert_equal(2, Rumo::UInt16.new(1, 2).size)
+    assert_equal(2, Rumo::Int16.new(1, 2).size)
+    assert_equal(2, Rumo::UInt32.new(1, 2).size)
+    assert_equal(2, Rumo::Int32.new(1, 2).size)
+    assert_equal(2, Rumo::UInt64.new(1, 2).size)
+    assert_equal(2, Rumo::Int64.new(1, 2).size)
+    assert_equal(2, Rumo::Float32.new(1, 2).size)
+    assert_equal(2, Rumo::SFloat.new(1, 2).size)
+    assert_equal(2, Rumo::Float64.new(1, 2).size)
+    assert_equal(2, Rumo::DFloat.new(1, 2).size)
+  end
+
+  test 'length2' do
+    assert_equal(2, Rumo::UInt8.new(1, 2).length)
+    assert_equal(2, Rumo::Int8.new(1, 2).length)
+    assert_equal(2, Rumo::UInt16.new(1, 2).length)
+    assert_equal(2, Rumo::Int16.new(1, 2).length)
+    assert_equal(2, Rumo::UInt32.new(1, 2).length)
+    assert_equal(2, Rumo::Int32.new(1, 2).length)
+    assert_equal(2, Rumo::UInt64.new(1, 2).length)
+    assert_equal(2, Rumo::Int64.new(1, 2).length)
+    assert_equal(2, Rumo::Float32.new(1, 2).length)
+    assert_equal(2, Rumo::SFloat.new(1, 2).length)
+    assert_equal(2, Rumo::Float64.new(1, 2).length)
+    assert_equal(2, Rumo::DFloat.new(1, 2).length)
+  end
+
+  test 'size3' do
+    assert_equal(6, Rumo::UInt8.new(1, 2, 3).size)
+    assert_equal(6, Rumo::Int8.new(1, 2, 3).size)
+    assert_equal(6, Rumo::UInt16.new(1, 2, 3).size)
+    assert_equal(6, Rumo::Int16.new(1, 2, 3).size)
+    assert_equal(6, Rumo::UInt32.new(1, 2, 3).size)
+    assert_equal(6, Rumo::Int32.new(1, 2, 3).size)
+    assert_equal(6, Rumo::UInt64.new(1, 2, 3).size)
+    assert_equal(6, Rumo::Int64.new(1, 2, 3).size)
+    assert_equal(6, Rumo::Float32.new(1, 2, 3).size)
+    assert_equal(6, Rumo::SFloat.new(1, 2, 3).size)
+    assert_equal(6, Rumo::Float64.new(1, 2, 3).size)
+    assert_equal(6, Rumo::DFloat.new(1, 2, 3).size)
+  end
+
+  test 'length3' do
+    assert_equal(6, Rumo::UInt8.new(1, 2, 3).length)
+    assert_equal(6, Rumo::Int8.new(1, 2, 3).length)
+    assert_equal(6, Rumo::UInt16.new(1, 2, 3).length)
+    assert_equal(6, Rumo::Int16.new(1, 2, 3).length)
+    assert_equal(6, Rumo::UInt32.new(1, 2, 3).length)
+    assert_equal(6, Rumo::Int32.new(1, 2, 3).length)
+    assert_equal(6, Rumo::UInt64.new(1, 2, 3).length)
+    assert_equal(6, Rumo::Int64.new(1, 2, 3).length)
+    assert_equal(6, Rumo::Float32.new(1, 2, 3).length)
+    assert_equal(6, Rumo::SFloat.new(1, 2, 3).length)
+    assert_equal(6, Rumo::Float64.new(1, 2, 3).length)
+    assert_equal(6, Rumo::DFloat.new(1, 2, 3).length)
+  end
 end
