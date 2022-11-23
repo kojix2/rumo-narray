@@ -7,4 +7,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 magnus = "0.4"
-
+ndarray = { version = "0.15.0", features = ["blas"] }
+blas-src = { version = "0.8", features = ["openblas"] }
+openblas-src = { version = "0.10", features = ["cblas", "system"] }
