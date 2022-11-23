@@ -215,7 +215,7 @@ fn init() -> Result<(), Error> {
     class_i16.define_method("ndim", method!(Int16::ndim, 0))?;
 
     let class_u32 = module.define_class("UInt32", Default::default())?;
-    class_u32.define_singleton_method("__new", function!(UInt32::_new, 1))?;
+    class_u32.define_singleton_method("_new", function!(UInt32::_new, 1))?;
     class_u32.define_method("shape", method!(UInt32::shape, 0))?;
     class_u32.define_method("ndim", method!(UInt32::ndim, 0))?;
 
