@@ -5,7 +5,7 @@ use ndarray::{array, prelude::*, Array, ArrayD, ArrayView, IxDyn};
 use magnus::{define_class, define_module, eval, function, method, prelude::*, Error};
 
 trait NArray {
-    fn _new(dims: Vec<usize>) -> Self;
+    fn zeros(dims: Vec<usize>) -> Self;
     fn shape(&self) -> Vec<usize>;
     fn ndim(&self) -> usize;
     fn length(&self) -> usize;
@@ -17,7 +17,7 @@ struct UInt8 {
 }
 
 impl NArray for UInt8 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<u8>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -38,7 +38,7 @@ struct Int8 {
 }
 
 impl Int8 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<i8>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -59,7 +59,7 @@ struct UInt16 {
 }
 
 impl UInt16 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<u16>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -80,7 +80,7 @@ struct Int16 {
 }
 
 impl Int16 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<i16>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -101,7 +101,7 @@ struct UInt32 {
 }
 
 impl UInt32 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<u32>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -122,7 +122,7 @@ struct Int32 {
 }
 
 impl Int32 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<i32>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -143,7 +143,7 @@ struct UInt64 {
 }
 
 impl UInt64 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<u64>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -164,7 +164,7 @@ struct Int64 {
 }
 
 impl Int64 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<i64>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -185,7 +185,7 @@ struct Float32 {
 }
 
 impl Float32 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<f32>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -206,7 +206,7 @@ struct Float64 {
 }
 
 impl Float64 {
-    fn _new(dims: Vec<usize>) -> Self {
+    fn zeros(dims: Vec<usize>) -> Self {
         let mut nda = ArrayD::<f64>::zeros(IxDyn(&dims));
         Self { nda }
     }
@@ -226,70 +226,70 @@ fn init() -> Result<(), Error> {
     let module = define_module("Rumo")?;
 
     let class_u8 = module.define_class("UInt8", Default::default())?;
-    class_u8.define_singleton_method("_new", function!(UInt8::_new, 1))?;
+    class_u8.define_singleton_method("zeros", function!(UInt8::zeros, 1))?;
     class_u8.define_method("shape", method!(UInt8::shape, 0))?;
     class_u8.define_method("ndim", method!(UInt8::ndim, 0))?;
     class_u8.define_method("length", method!(UInt8::length, 0))?;
     class_u8.define_method("size", method!(UInt8::length, 0))?;
 
     let class_i8 = module.define_class("Int8", Default::default())?;
-    class_i8.define_singleton_method("_new", function!(Int8::_new, 1))?;
+    class_i8.define_singleton_method("zeros", function!(Int8::zeros, 1))?;
     class_i8.define_method("shape", method!(Int8::shape, 0))?;
     class_i8.define_method("ndim", method!(Int8::ndim, 0))?;
     class_i8.define_method("length", method!(Int8::length, 0))?;
     class_i8.define_method("size", method!(Int8::length, 0))?;
 
     let class_u16 = module.define_class("UInt16", Default::default())?;
-    class_u16.define_singleton_method("_new", function!(UInt16::_new, 1))?;
+    class_u16.define_singleton_method("zeros", function!(UInt16::zeros, 1))?;
     class_u16.define_method("shape", method!(UInt16::shape, 0))?;
     class_u16.define_method("ndim", method!(UInt16::ndim, 0))?;
     class_u16.define_method("length", method!(UInt16::length, 0))?;
     class_u16.define_method("size", method!(UInt16::length, 0))?;
 
     let class_i16 = module.define_class("Int16", Default::default())?;
-    class_i16.define_singleton_method("_new", function!(Int16::_new, 1))?;
+    class_i16.define_singleton_method("zeros", function!(Int16::zeros, 1))?;
     class_i16.define_method("shape", method!(Int16::shape, 0))?;
     class_i16.define_method("ndim", method!(Int16::ndim, 0))?;
     class_i16.define_method("length", method!(Int16::length, 0))?;
     class_i16.define_method("size", method!(Int16::length, 0))?;
 
     let class_u32 = module.define_class("UInt32", Default::default())?;
-    class_u32.define_singleton_method("_new", function!(UInt32::_new, 1))?;
+    class_u32.define_singleton_method("zeros", function!(UInt32::zeros, 1))?;
     class_u32.define_method("shape", method!(UInt32::shape, 0))?;
     class_u32.define_method("ndim", method!(UInt32::ndim, 0))?;
     class_u32.define_method("length", method!(UInt32::length, 0))?;
     class_u32.define_method("size", method!(UInt32::length, 0))?;
 
     let class_i32 = module.define_class("Int32", Default::default())?;
-    class_i32.define_singleton_method("_new", function!(Int32::_new, 1))?;
+    class_i32.define_singleton_method("zeros", function!(Int32::zeros, 1))?;
     class_i32.define_method("shape", method!(Int32::shape, 0))?;
     class_i32.define_method("ndim", method!(Int32::ndim, 0))?;
     class_i32.define_method("length", method!(Int32::length, 0))?;
     class_i32.define_method("size", method!(Int32::length, 0))?;
 
     let class_u64 = module.define_class("UInt64", Default::default())?;
-    class_u64.define_singleton_method("_new", function!(UInt64::_new, 1))?;
+    class_u64.define_singleton_method("zeros", function!(UInt64::zeros, 1))?;
     class_u64.define_method("shape", method!(UInt64::shape, 0))?;
     class_u64.define_method("ndim", method!(UInt64::ndim, 0))?;
     class_u64.define_method("length", method!(UInt64::length, 0))?;
     class_u64.define_method("size", method!(UInt64::length, 0))?;
 
     let class_i64 = module.define_class("Int64", Default::default())?;
-    class_i64.define_singleton_method("_new", function!(Int64::_new, 1))?;
+    class_i64.define_singleton_method("zeros", function!(Int64::zeros, 1))?;
     class_i64.define_method("shape", method!(Int64::shape, 0))?;
     class_i64.define_method("ndim", method!(Int64::ndim, 0))?;
     class_i64.define_method("length", method!(Int64::length, 0))?;
     class_i64.define_method("size", method!(Int64::length, 0))?;
 
     let class_f32 = module.define_class("Float32", Default::default())?;
-    class_f32.define_singleton_method("_new", function!(Float32::_new, 1))?;
+    class_f32.define_singleton_method("zeros", function!(Float32::zeros, 1))?;
     class_f32.define_method("shape", method!(Float32::shape, 0))?;
     class_f32.define_method("ndim", method!(Float32::ndim, 0))?;
     class_f32.define_method("length", method!(Float32::length, 0))?;
     class_f32.define_method("size", method!(Float32::length, 0))?;
 
     let class_f64 = module.define_class("Float64", Default::default())?;
-    class_f64.define_singleton_method("_new", function!(Float64::_new, 1))?;
+    class_f64.define_singleton_method("zeros", function!(Float64::zeros, 1))?;
     class_f64.define_method("shape", method!(Float64::shape, 0))?;
     class_f64.define_method("ndim", method!(Float64::ndim, 0))?;
     class_f64.define_method("length", method!(Float64::length, 0))?;
