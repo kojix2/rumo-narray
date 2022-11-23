@@ -1,4 +1,4 @@
-require "mkmf"
-require "rb_sys/mkmf"
+require 'mkmf'
+require 'rb_sys/mkmf'
 
-create_rust_makefile("rumo/rumo")
+create_rust_makefile('rumo/rumo')
