@@ -65,6 +65,9 @@ impl <%= type %> {
     fn sum(&self) -> <%= rust_type %> {
         self.nda.sum()
     }
+    fn mean(&self) -> <%= rust_type %> {
+        self.nda.mean()
+    }
     fn product(&self) -> <%= rust_type %> {
         self.nda.product()
     }
@@ -84,6 +87,7 @@ fn init() -> Result<(), Error> {
     class_<%= rust_type %>.define_method("length", method!(<%= type %>::length, 0))?;
     class_<%= rust_type %>.define_method("size", method!(<%= type %>::length, 0))?;
     class_<%= rust_type %>.define_method("sum", method!(<%= type %>::sum, 0))?;
+    class_<%= rust_type %>.define_method("mean", method!(<%= type %>::mean, 0))?;
     class_<%= rust_type %>.define_method("prod", method!(<%= type %>::product, 0))?;
     class_<%= rust_type %>.define_method("inspect", method!(<%= type %>::to_string, 0))?;
 <% end %>

@@ -14,4 +14,10 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/*_test.rb']
 end
 
+desc 'Expand erb templates'
+task :expand do
+  `bundle exec ruby ext/rumo/src/lib.erb.rs`
+  `bundle exec ruby test/rumo_test.erb`
+end
+
 task default: :test
