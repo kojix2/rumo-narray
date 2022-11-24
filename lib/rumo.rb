@@ -8,7 +8,15 @@ module Rumo
 
   module InitWithVararg
     def new(*args)
-      zeros(args)
+      _zeros(args)
+    end
+
+    def zeros(*args)
+      _zeros(args)
+    end
+
+    def ones(*args)
+      _ones(args)
     end
   end
 

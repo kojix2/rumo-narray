@@ -84,6 +84,126 @@ class RumoTest < Test::Unit::TestCase
     assert_instance_of(::Rumo::Float64, Rumo::DFloat.new(1, 2, 3, 4))
   end
 
+  test 'zeros0' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.zeros(0))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.zeros(0))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.zeros(0))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.zeros(0))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.zeros(0))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.zeros(0))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.zeros(0))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.zeros(0))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.zeros(0))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.zeros(0))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.zeros(0))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.zeros(0))
+  end
+
+  test 'zeros1' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.zeros(1))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.zeros(1))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.zeros(1))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.zeros(1))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.zeros(1))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.zeros(1))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.zeros(1))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.zeros(1))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.zeros(1))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.zeros(1))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.zeros(1))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.zeros(1))
+  end
+
+  test 'zeros2' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.zeros(1, 2))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.zeros(1, 2))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.zeros(1, 2))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.zeros(1, 2))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.zeros(1, 2))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.zeros(1, 2))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.zeros(1, 2))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.zeros(1, 2))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.zeros(1, 2))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.zeros(1, 2))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.zeros(1, 2))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.zeros(1, 2))
+  end
+
+  test 'zeros3' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.zeros(1, 2, 3))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.zeros(1, 2, 3))
+  end
+
+  test 'ones0' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.ones(0))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.ones(0))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.ones(0))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.ones(0))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.ones(0))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.ones(0))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.ones(0))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.ones(0))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.ones(0))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.ones(0))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.ones(0))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.ones(0))
+  end
+
+  test 'ones1' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.ones(1))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.ones(1))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.ones(1))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.ones(1))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.ones(1))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.ones(1))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.ones(1))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.ones(1))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.ones(1))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.ones(1))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.ones(1))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.ones(1))
+  end
+
+  test 'ones2' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.ones(1, 2))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.ones(1, 2))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.ones(1, 2))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.ones(1, 2))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.ones(1, 2))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.ones(1, 2))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.ones(1, 2))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.ones(1, 2))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.ones(1, 2))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.ones(1, 2))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.ones(1, 2))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.ones(1, 2))
+  end
+
+  test 'ones3' do
+    assert_instance_of(::Rumo::UInt8, Rumo::UInt8.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Int8, Rumo::Int8.ones(1, 2, 3))
+    assert_instance_of(::Rumo::UInt16, Rumo::UInt16.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Int16, Rumo::Int16.ones(1, 2, 3))
+    assert_instance_of(::Rumo::UInt32, Rumo::UInt32.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Int32, Rumo::Int32.ones(1, 2, 3))
+    assert_instance_of(::Rumo::UInt64, Rumo::UInt64.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Int64, Rumo::Int64.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Float32, Rumo::Float32.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Float32, Rumo::SFloat.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Float64, Rumo::Float64.ones(1, 2, 3))
+    assert_instance_of(::Rumo::Float64, Rumo::DFloat.ones(1, 2, 3))
+  end
+
   test 'shape0' do
     assert_equal([0], Rumo::UInt8.new(0).shape)
     assert_equal([0], Rumo::Int8.new(0).shape)
