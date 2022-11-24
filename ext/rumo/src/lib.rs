@@ -12,7 +12,7 @@ trait NArray {
     fn shape(&self) -> Vec<usize>;
     fn ndim(&self) -> usize;
     fn length(&self) -> usize;
-    fn inspect(&self) -> String;
+    fn to_string(&self) -> String;
 }
 
 
@@ -39,7 +39,7 @@ impl NArray for UInt8 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -76,7 +76,7 @@ impl NArray for Int8 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -113,7 +113,7 @@ impl NArray for UInt16 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -150,7 +150,7 @@ impl NArray for Int16 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -187,7 +187,7 @@ impl NArray for UInt32 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -224,7 +224,7 @@ impl NArray for Int32 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -261,7 +261,7 @@ impl NArray for UInt64 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -298,7 +298,7 @@ impl NArray for Int64 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -335,7 +335,7 @@ impl NArray for Float32 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -372,7 +372,7 @@ impl NArray for Float64 {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -399,7 +399,7 @@ fn init() -> Result<(), Error> {
     class_u8.define_method("size", method!(UInt8::length, 0))?;
     class_u8.define_method("sum", method!(UInt8::sum, 0))?;
     class_u8.define_method("prod", method!(UInt8::product, 0))?;
-    class_u8.define_method("inspect", method!(UInt8::inspect, 0))?;
+    class_u8.define_method("inspect", method!(UInt8::to_string, 0))?;
     let class_i8 = module.define_class("Int8", Default::default())?;
     class_i8.define_singleton_method("_zeros", function!(Int8::zeros, 1))?;
     class_i8.define_singleton_method("_ones", function!(Int8::ones, 1))?;
@@ -409,7 +409,7 @@ fn init() -> Result<(), Error> {
     class_i8.define_method("size", method!(Int8::length, 0))?;
     class_i8.define_method("sum", method!(Int8::sum, 0))?;
     class_i8.define_method("prod", method!(Int8::product, 0))?;
-    class_i8.define_method("inspect", method!(Int8::inspect, 0))?;
+    class_i8.define_method("inspect", method!(Int8::to_string, 0))?;
     let class_u16 = module.define_class("UInt16", Default::default())?;
     class_u16.define_singleton_method("_zeros", function!(UInt16::zeros, 1))?;
     class_u16.define_singleton_method("_ones", function!(UInt16::ones, 1))?;
@@ -419,7 +419,7 @@ fn init() -> Result<(), Error> {
     class_u16.define_method("size", method!(UInt16::length, 0))?;
     class_u16.define_method("sum", method!(UInt16::sum, 0))?;
     class_u16.define_method("prod", method!(UInt16::product, 0))?;
-    class_u16.define_method("inspect", method!(UInt16::inspect, 0))?;
+    class_u16.define_method("inspect", method!(UInt16::to_string, 0))?;
     let class_i16 = module.define_class("Int16", Default::default())?;
     class_i16.define_singleton_method("_zeros", function!(Int16::zeros, 1))?;
     class_i16.define_singleton_method("_ones", function!(Int16::ones, 1))?;
@@ -429,7 +429,7 @@ fn init() -> Result<(), Error> {
     class_i16.define_method("size", method!(Int16::length, 0))?;
     class_i16.define_method("sum", method!(Int16::sum, 0))?;
     class_i16.define_method("prod", method!(Int16::product, 0))?;
-    class_i16.define_method("inspect", method!(Int16::inspect, 0))?;
+    class_i16.define_method("inspect", method!(Int16::to_string, 0))?;
     let class_u32 = module.define_class("UInt32", Default::default())?;
     class_u32.define_singleton_method("_zeros", function!(UInt32::zeros, 1))?;
     class_u32.define_singleton_method("_ones", function!(UInt32::ones, 1))?;
@@ -439,7 +439,7 @@ fn init() -> Result<(), Error> {
     class_u32.define_method("size", method!(UInt32::length, 0))?;
     class_u32.define_method("sum", method!(UInt32::sum, 0))?;
     class_u32.define_method("prod", method!(UInt32::product, 0))?;
-    class_u32.define_method("inspect", method!(UInt32::inspect, 0))?;
+    class_u32.define_method("inspect", method!(UInt32::to_string, 0))?;
     let class_i32 = module.define_class("Int32", Default::default())?;
     class_i32.define_singleton_method("_zeros", function!(Int32::zeros, 1))?;
     class_i32.define_singleton_method("_ones", function!(Int32::ones, 1))?;
@@ -449,7 +449,7 @@ fn init() -> Result<(), Error> {
     class_i32.define_method("size", method!(Int32::length, 0))?;
     class_i32.define_method("sum", method!(Int32::sum, 0))?;
     class_i32.define_method("prod", method!(Int32::product, 0))?;
-    class_i32.define_method("inspect", method!(Int32::inspect, 0))?;
+    class_i32.define_method("inspect", method!(Int32::to_string, 0))?;
     let class_u64 = module.define_class("UInt64", Default::default())?;
     class_u64.define_singleton_method("_zeros", function!(UInt64::zeros, 1))?;
     class_u64.define_singleton_method("_ones", function!(UInt64::ones, 1))?;
@@ -459,7 +459,7 @@ fn init() -> Result<(), Error> {
     class_u64.define_method("size", method!(UInt64::length, 0))?;
     class_u64.define_method("sum", method!(UInt64::sum, 0))?;
     class_u64.define_method("prod", method!(UInt64::product, 0))?;
-    class_u64.define_method("inspect", method!(UInt64::inspect, 0))?;
+    class_u64.define_method("inspect", method!(UInt64::to_string, 0))?;
     let class_i64 = module.define_class("Int64", Default::default())?;
     class_i64.define_singleton_method("_zeros", function!(Int64::zeros, 1))?;
     class_i64.define_singleton_method("_ones", function!(Int64::ones, 1))?;
@@ -469,7 +469,7 @@ fn init() -> Result<(), Error> {
     class_i64.define_method("size", method!(Int64::length, 0))?;
     class_i64.define_method("sum", method!(Int64::sum, 0))?;
     class_i64.define_method("prod", method!(Int64::product, 0))?;
-    class_i64.define_method("inspect", method!(Int64::inspect, 0))?;
+    class_i64.define_method("inspect", method!(Int64::to_string, 0))?;
     let class_f32 = module.define_class("Float32", Default::default())?;
     class_f32.define_singleton_method("_zeros", function!(Float32::zeros, 1))?;
     class_f32.define_singleton_method("_ones", function!(Float32::ones, 1))?;
@@ -479,7 +479,7 @@ fn init() -> Result<(), Error> {
     class_f32.define_method("size", method!(Float32::length, 0))?;
     class_f32.define_method("sum", method!(Float32::sum, 0))?;
     class_f32.define_method("prod", method!(Float32::product, 0))?;
-    class_f32.define_method("inspect", method!(Float32::inspect, 0))?;
+    class_f32.define_method("inspect", method!(Float32::to_string, 0))?;
     let class_f64 = module.define_class("Float64", Default::default())?;
     class_f64.define_singleton_method("_zeros", function!(Float64::zeros, 1))?;
     class_f64.define_singleton_method("_ones", function!(Float64::ones, 1))?;
@@ -489,7 +489,7 @@ fn init() -> Result<(), Error> {
     class_f64.define_method("size", method!(Float64::length, 0))?;
     class_f64.define_method("sum", method!(Float64::sum, 0))?;
     class_f64.define_method("prod", method!(Float64::product, 0))?;
-    class_f64.define_method("inspect", method!(Float64::inspect, 0))?;
+    class_f64.define_method("inspect", method!(Float64::to_string, 0))?;
 
     eval::<bool>("Rumo::SFloat = Rumo::Float32")?;
     eval::<bool>("Rumo::DFloat = Rumo::Float64")?;

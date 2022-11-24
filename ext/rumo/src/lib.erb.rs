@@ -28,7 +28,7 @@ trait NArray {
     fn shape(&self) -> Vec<usize>;
     fn ndim(&self) -> usize;
     fn length(&self) -> usize;
-    fn inspect(&self) -> String;
+    fn to_string(&self) -> String;
 }
 
 <% TYPES.each do |type, rust_type| %>
@@ -56,7 +56,7 @@ impl NArray for <%= type %> {
     fn length(&self) -> usize {
         self.nda.len()
     }
-    fn inspect(&self) -> String {
+    fn to_string(&self) -> String {
         self.nda.to_string()
     }
 }
@@ -85,7 +85,7 @@ fn init() -> Result<(), Error> {
     class_<%= rust_type %>.define_method("size", method!(<%= type %>::length, 0))?;
     class_<%= rust_type %>.define_method("sum", method!(<%= type %>::sum, 0))?;
     class_<%= rust_type %>.define_method("prod", method!(<%= type %>::product, 0))?;
-    class_<%= rust_type %>.define_method("inspect", method!(<%= type %>::inspect, 0))?;
+    class_<%= rust_type %>.define_method("inspect", method!(<%= type %>::to_string, 0))?;
 <% end %>
 
     eval::<bool>("Rumo::SFloat = Rumo::Float32")?;
