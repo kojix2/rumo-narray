@@ -443,4 +443,19 @@ class RumoTest < Test::Unit::TestCase
     assert_equal(6, Rumo::Float64.new(1, 2, 3).length)
     assert_equal(6, Rumo::DFloat.new(1, 2, 3).length)
   end
+
+  test 'sum' do
+    assert_equal(24, Rumo::UInt8.ones(2,3,4).sum)
+    assert_equal(24, Rumo::Int8.ones(2,3,4).sum)
+    assert_equal(24, Rumo::UInt16.ones(2,3,4).sum)
+    assert_equal(24, Rumo::Int16.ones(2,3,4).sum)
+    assert_equal(24, Rumo::UInt32.ones(2,3,4).sum)
+    assert_equal(24, Rumo::Int32.ones(2,3,4).sum)
+    assert_equal(24, Rumo::UInt64.ones(2,3,4).sum)
+    assert_equal(24, Rumo::Int64.ones(2,3,4).sum)
+    assert_equal(24, Rumo::Float32.ones(2,3,4).sum)
+    assert_equal(24, Rumo::SFloat.ones(2,3,4).sum)
+    assert_equal(24, Rumo::Float64.ones(2,3,4).sum)
+    assert_equal(24, Rumo::DFloat.ones(2,3,4).sum)
+  end
 end

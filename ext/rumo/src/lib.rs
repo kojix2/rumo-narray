@@ -41,6 +41,12 @@ impl NArray for UInt8 {
     }
 }
 
+impl UInt8 {
+    fn sum(&self) -> u8 {
+        self.nda.sum()
+    }
+}
+
 #[magnus::wrap(class = "Rumo::Int8")]
 struct Int8 {
     nda: ArrayD<i8>,
@@ -66,6 +72,12 @@ impl NArray for Int8 {
     }
     fn inspect(&self) -> String {
         self.nda.to_string()
+    }
+}
+
+impl Int8 {
+    fn sum(&self) -> i8 {
+        self.nda.sum()
     }
 }
 
@@ -97,6 +109,12 @@ impl NArray for UInt16 {
     }
 }
 
+impl UInt16 {
+    fn sum(&self) -> u16 {
+        self.nda.sum()
+    }
+}
+
 #[magnus::wrap(class = "Rumo::Int16")]
 struct Int16 {
     nda: ArrayD<i16>,
@@ -122,6 +140,12 @@ impl NArray for Int16 {
     }
     fn inspect(&self) -> String {
         self.nda.to_string()
+    }
+}
+
+impl Int16 {
+    fn sum(&self) -> i16 {
+        self.nda.sum()
     }
 }
 
@@ -153,6 +177,12 @@ impl NArray for UInt32 {
     }
 }
 
+impl UInt32 {
+    fn sum(&self) -> u32 {
+        self.nda.sum()
+    }
+}
+
 #[magnus::wrap(class = "Rumo::Int32")]
 struct Int32 {
     nda: ArrayD<i32>,
@@ -178,6 +208,12 @@ impl NArray for Int32 {
     }
     fn inspect(&self) -> String {
         self.nda.to_string()
+    }
+}
+
+impl Int32 {
+    fn sum(&self) -> i32 {
+        self.nda.sum()
     }
 }
 
@@ -209,6 +245,12 @@ impl NArray for UInt64 {
     }
 }
 
+impl UInt64 {
+    fn sum(&self) -> u64 {
+        self.nda.sum()
+    }
+}
+
 #[magnus::wrap(class = "Rumo::Int64")]
 struct Int64 {
     nda: ArrayD<i64>,
@@ -234,6 +276,12 @@ impl NArray for Int64 {
     }
     fn inspect(&self) -> String {
         self.nda.to_string()
+    }
+}
+
+impl Int64 {
+    fn sum(&self) -> i64 {
+        self.nda.sum()
     }
 }
 
@@ -265,6 +313,12 @@ impl NArray for Float32 {
     }
 }
 
+impl Float32 {
+    fn sum(&self) -> f32 {
+        self.nda.sum()
+    }
+}
+
 #[magnus::wrap(class = "Rumo::Float64")]
 struct Float64 {
     nda: ArrayD<f64>,
@@ -293,6 +347,12 @@ impl NArray for Float64 {
     }
 }
 
+impl Float64 {
+    fn sum(&self) -> f64 {
+        self.nda.sum()
+    }
+}
+
 #[magnus::init]
 fn init() -> Result<(), Error> {
     let module = define_module("Rumo")?;
@@ -304,6 +364,7 @@ fn init() -> Result<(), Error> {
     class_u8.define_method("ndim", method!(UInt8::ndim, 0))?;
     class_u8.define_method("length", method!(UInt8::length, 0))?;
     class_u8.define_method("size", method!(UInt8::length, 0))?;
+    class_u8.define_method("sum", method!(UInt8::sum, 0))?;
     class_u8.define_method("inspect", method!(UInt8::inspect, 0))?;
 
     let class_i8 = module.define_class("Int8", Default::default())?;
@@ -313,6 +374,7 @@ fn init() -> Result<(), Error> {
     class_i8.define_method("ndim", method!(Int8::ndim, 0))?;
     class_i8.define_method("length", method!(Int8::length, 0))?;
     class_i8.define_method("size", method!(Int8::length, 0))?;
+    class_i8.define_method("sum", method!(Int8::sum, 0))?;
     class_i8.define_method("inspect", method!(Int8::inspect, 0))?;
 
     let class_u16 = module.define_class("UInt16", Default::default())?;
@@ -322,6 +384,7 @@ fn init() -> Result<(), Error> {
     class_u16.define_method("ndim", method!(UInt16::ndim, 0))?;
     class_u16.define_method("length", method!(UInt16::length, 0))?;
     class_u16.define_method("size", method!(UInt16::length, 0))?;
+    class_u16.define_method("sum", method!(UInt16::sum, 0))?;
     class_u16.define_method("inspect", method!(UInt16::inspect, 0))?;
 
     let class_i16 = module.define_class("Int16", Default::default())?;
@@ -331,6 +394,7 @@ fn init() -> Result<(), Error> {
     class_i16.define_method("ndim", method!(Int16::ndim, 0))?;
     class_i16.define_method("length", method!(Int16::length, 0))?;
     class_i16.define_method("size", method!(Int16::length, 0))?;
+    class_i16.define_method("sum", method!(Int16::sum, 0))?;
     class_i16.define_method("inspect", method!(Int16::inspect, 0))?;
 
     let class_u32 = module.define_class("UInt32", Default::default())?;
@@ -340,6 +404,7 @@ fn init() -> Result<(), Error> {
     class_u32.define_method("ndim", method!(UInt32::ndim, 0))?;
     class_u32.define_method("length", method!(UInt32::length, 0))?;
     class_u32.define_method("size", method!(UInt32::length, 0))?;
+    class_u32.define_method("sum", method!(UInt32::sum, 0))?;
     class_u32.define_method("inspect", method!(UInt32::inspect, 0))?;
 
     let class_i32 = module.define_class("Int32", Default::default())?;
@@ -349,6 +414,7 @@ fn init() -> Result<(), Error> {
     class_i32.define_method("ndim", method!(Int32::ndim, 0))?;
     class_i32.define_method("length", method!(Int32::length, 0))?;
     class_i32.define_method("size", method!(Int32::length, 0))?;
+    class_i32.define_method("sum", method!(Int32::sum, 0))?;
     class_i32.define_method("inspect", method!(Int32::inspect, 0))?;
 
     let class_u64 = module.define_class("UInt64", Default::default())?;
@@ -358,6 +424,7 @@ fn init() -> Result<(), Error> {
     class_u64.define_method("ndim", method!(UInt64::ndim, 0))?;
     class_u64.define_method("length", method!(UInt64::length, 0))?;
     class_u64.define_method("size", method!(UInt64::length, 0))?;
+    class_u64.define_method("sum", method!(UInt64::sum, 0))?;
     class_u64.define_method("inspect", method!(UInt64::inspect, 0))?;
 
     let class_i64 = module.define_class("Int64", Default::default())?;
@@ -367,6 +434,7 @@ fn init() -> Result<(), Error> {
     class_i64.define_method("ndim", method!(Int64::ndim, 0))?;
     class_i64.define_method("length", method!(Int64::length, 0))?;
     class_i64.define_method("size", method!(Int64::length, 0))?;
+    class_i64.define_method("sum", method!(Int64::sum, 0))?;
     class_i64.define_method("inspect", method!(Int64::inspect, 0))?;
 
     let class_f32 = module.define_class("Float32", Default::default())?;
@@ -376,6 +444,7 @@ fn init() -> Result<(), Error> {
     class_f32.define_method("ndim", method!(Float32::ndim, 0))?;
     class_f32.define_method("length", method!(Float32::length, 0))?;
     class_f32.define_method("size", method!(Float32::length, 0))?;
+    class_f32.define_method("sum", method!(Float32::sum, 0))?;
     class_f32.define_method("inspect", method!(Float32::inspect, 0))?;
 
     let class_f64 = module.define_class("Float64", Default::default())?;
@@ -385,6 +454,7 @@ fn init() -> Result<(), Error> {
     class_f64.define_method("ndim", method!(Float64::ndim, 0))?;
     class_f64.define_method("length", method!(Float64::length, 0))?;
     class_f64.define_method("size", method!(Float64::length, 0))?;
+    class_f64.define_method("sum", method!(Float64::sum, 0))?;
     class_f64.define_method("inspect", method!(Float64::inspect, 0))?;
 
     eval::<bool>("Rumo::SFloat = Rumo::Float32")?;
