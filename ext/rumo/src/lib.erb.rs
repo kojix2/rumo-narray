@@ -74,7 +74,7 @@ impl <%= type %> {
 fn init() -> Result<(), Error> {
     let module = define_module("Rumo")?;
 
-<% TYPES.each do |type, rust_type| -%>
+<% TYPES.each do |type, rust_type| %>
     let class_<%= rust_type %> = module.define_class("<%= type %>", Default::default())?;
     class_<%= rust_type %>.define_singleton_method("_zeros", function!(<%= type %>::zeros, 1))?;
     class_<%= rust_type %>.define_singleton_method("_ones", function!(<%= type %>::ones, 1))?;
