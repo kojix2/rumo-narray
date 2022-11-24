@@ -347,6 +347,12 @@ impl Float32 {
     fn product(&self) -> f32 {
         self.nda.product()
     }
+    fn var(&self, ddof: f32) -> f32 {
+        self.nda.var(ddof)
+    }
+    fn std(&self, ddof: f32) -> f32 {
+        self.nda.std(ddof)
+    }
 }
 
 #[magnus::wrap(class = "Rumo::Float64")]
@@ -383,6 +389,12 @@ impl Float64 {
     }
     fn product(&self) -> f64 {
         self.nda.product()
+    }
+    fn var(&self, ddof: f64) -> f64 {
+        self.nda.var(ddof)
+    }
+    fn std(&self, ddof: f64) -> f64 {
+        self.nda.std(ddof)
     }
 }
 

@@ -62,9 +62,18 @@ impl NArray for <%= type %> {
 }
 
 impl <%= type %> {
-    <%- %w[sum product].each do |name| -%>
-    fn <%= name %>(&self) -> <%= rust_type %> {
-        self.nda.<%= name %>()
+    fn sum(&self) -> <%= rust_type %> {
+        self.nda.sum()
+    }
+    fn product(&self) -> <%= rust_type %> {
+        self.nda.product()
+    }
+    <%- if type =~ /Float/ -%>
+    fn var(&self, ddof: <%= rust_type %>) -> <%= rust_type %> {
+        self.nda.var(ddof)
+    }
+    fn std(&self, ddof: <%= rust_type %>) -> <%= rust_type %> {
+        self.nda.std(ddof)
     }
     <%- end -%>
 }
