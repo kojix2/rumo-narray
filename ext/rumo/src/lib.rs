@@ -48,9 +48,6 @@ impl UInt8 {
     fn sum(&self) -> u8 {
         self.nda.sum()
     }
-    fn mean(&self) -> u8 {
-        self.nda.mean()
-    }
     fn product(&self) -> u8 {
         self.nda.product()
     }
@@ -87,9 +84,6 @@ impl NArray for Int8 {
 impl Int8 {
     fn sum(&self) -> i8 {
         self.nda.sum()
-    }
-    fn mean(&self) -> i8 {
-        self.nda.mean()
     }
     fn product(&self) -> i8 {
         self.nda.product()
@@ -128,9 +122,6 @@ impl UInt16 {
     fn sum(&self) -> u16 {
         self.nda.sum()
     }
-    fn mean(&self) -> u16 {
-        self.nda.mean()
-    }
     fn product(&self) -> u16 {
         self.nda.product()
     }
@@ -167,9 +158,6 @@ impl NArray for Int16 {
 impl Int16 {
     fn sum(&self) -> i16 {
         self.nda.sum()
-    }
-    fn mean(&self) -> i16 {
-        self.nda.mean()
     }
     fn product(&self) -> i16 {
         self.nda.product()
@@ -208,9 +196,6 @@ impl UInt32 {
     fn sum(&self) -> u32 {
         self.nda.sum()
     }
-    fn mean(&self) -> u32 {
-        self.nda.mean()
-    }
     fn product(&self) -> u32 {
         self.nda.product()
     }
@@ -247,9 +232,6 @@ impl NArray for Int32 {
 impl Int32 {
     fn sum(&self) -> i32 {
         self.nda.sum()
-    }
-    fn mean(&self) -> i32 {
-        self.nda.mean()
     }
     fn product(&self) -> i32 {
         self.nda.product()
@@ -288,9 +270,6 @@ impl UInt64 {
     fn sum(&self) -> u64 {
         self.nda.sum()
     }
-    fn mean(&self) -> u64 {
-        self.nda.mean()
-    }
     fn product(&self) -> u64 {
         self.nda.product()
     }
@@ -327,9 +306,6 @@ impl NArray for Int64 {
 impl Int64 {
     fn sum(&self) -> i64 {
         self.nda.sum()
-    }
-    fn mean(&self) -> i64 {
-        self.nda.mean()
     }
     fn product(&self) -> i64 {
         self.nda.product()
@@ -368,9 +344,6 @@ impl Float32 {
     fn sum(&self) -> f32 {
         self.nda.sum()
     }
-    fn mean(&self) -> f32 {
-        self.nda.mean()
-    }
     fn product(&self) -> f32 {
         self.nda.product()
     }
@@ -408,9 +381,6 @@ impl Float64 {
     fn sum(&self) -> f64 {
         self.nda.sum()
     }
-    fn mean(&self) -> f64 {
-        self.nda.mean()
-    }
     fn product(&self) -> f64 {
         self.nda.product()
     }
@@ -428,7 +398,6 @@ fn init() -> Result<(), Error> {
     class_u8.define_method("length", method!(UInt8::length, 0))?;
     class_u8.define_method("size", method!(UInt8::length, 0))?;
     class_u8.define_method("sum", method!(UInt8::sum, 0))?;
-    class_u8.define_method("mean", method!(UInt8::mean, 0))?;
     class_u8.define_method("prod", method!(UInt8::product, 0))?;
     class_u8.define_method("inspect", method!(UInt8::to_string, 0))?;
     let class_i8 = module.define_class("Int8", Default::default())?;
@@ -439,7 +408,6 @@ fn init() -> Result<(), Error> {
     class_i8.define_method("length", method!(Int8::length, 0))?;
     class_i8.define_method("size", method!(Int8::length, 0))?;
     class_i8.define_method("sum", method!(Int8::sum, 0))?;
-    class_i8.define_method("mean", method!(Int8::mean, 0))?;
     class_i8.define_method("prod", method!(Int8::product, 0))?;
     class_i8.define_method("inspect", method!(Int8::to_string, 0))?;
     let class_u16 = module.define_class("UInt16", Default::default())?;
@@ -450,7 +418,6 @@ fn init() -> Result<(), Error> {
     class_u16.define_method("length", method!(UInt16::length, 0))?;
     class_u16.define_method("size", method!(UInt16::length, 0))?;
     class_u16.define_method("sum", method!(UInt16::sum, 0))?;
-    class_u16.define_method("mean", method!(UInt16::mean, 0))?;
     class_u16.define_method("prod", method!(UInt16::product, 0))?;
     class_u16.define_method("inspect", method!(UInt16::to_string, 0))?;
     let class_i16 = module.define_class("Int16", Default::default())?;
@@ -461,7 +428,6 @@ fn init() -> Result<(), Error> {
     class_i16.define_method("length", method!(Int16::length, 0))?;
     class_i16.define_method("size", method!(Int16::length, 0))?;
     class_i16.define_method("sum", method!(Int16::sum, 0))?;
-    class_i16.define_method("mean", method!(Int16::mean, 0))?;
     class_i16.define_method("prod", method!(Int16::product, 0))?;
     class_i16.define_method("inspect", method!(Int16::to_string, 0))?;
     let class_u32 = module.define_class("UInt32", Default::default())?;
@@ -472,7 +438,6 @@ fn init() -> Result<(), Error> {
     class_u32.define_method("length", method!(UInt32::length, 0))?;
     class_u32.define_method("size", method!(UInt32::length, 0))?;
     class_u32.define_method("sum", method!(UInt32::sum, 0))?;
-    class_u32.define_method("mean", method!(UInt32::mean, 0))?;
     class_u32.define_method("prod", method!(UInt32::product, 0))?;
     class_u32.define_method("inspect", method!(UInt32::to_string, 0))?;
     let class_i32 = module.define_class("Int32", Default::default())?;
@@ -483,7 +448,6 @@ fn init() -> Result<(), Error> {
     class_i32.define_method("length", method!(Int32::length, 0))?;
     class_i32.define_method("size", method!(Int32::length, 0))?;
     class_i32.define_method("sum", method!(Int32::sum, 0))?;
-    class_i32.define_method("mean", method!(Int32::mean, 0))?;
     class_i32.define_method("prod", method!(Int32::product, 0))?;
     class_i32.define_method("inspect", method!(Int32::to_string, 0))?;
     let class_u64 = module.define_class("UInt64", Default::default())?;
@@ -494,7 +458,6 @@ fn init() -> Result<(), Error> {
     class_u64.define_method("length", method!(UInt64::length, 0))?;
     class_u64.define_method("size", method!(UInt64::length, 0))?;
     class_u64.define_method("sum", method!(UInt64::sum, 0))?;
-    class_u64.define_method("mean", method!(UInt64::mean, 0))?;
     class_u64.define_method("prod", method!(UInt64::product, 0))?;
     class_u64.define_method("inspect", method!(UInt64::to_string, 0))?;
     let class_i64 = module.define_class("Int64", Default::default())?;
@@ -505,7 +468,6 @@ fn init() -> Result<(), Error> {
     class_i64.define_method("length", method!(Int64::length, 0))?;
     class_i64.define_method("size", method!(Int64::length, 0))?;
     class_i64.define_method("sum", method!(Int64::sum, 0))?;
-    class_i64.define_method("mean", method!(Int64::mean, 0))?;
     class_i64.define_method("prod", method!(Int64::product, 0))?;
     class_i64.define_method("inspect", method!(Int64::to_string, 0))?;
     let class_f32 = module.define_class("Float32", Default::default())?;
@@ -516,7 +478,6 @@ fn init() -> Result<(), Error> {
     class_f32.define_method("length", method!(Float32::length, 0))?;
     class_f32.define_method("size", method!(Float32::length, 0))?;
     class_f32.define_method("sum", method!(Float32::sum, 0))?;
-    class_f32.define_method("mean", method!(Float32::mean, 0))?;
     class_f32.define_method("prod", method!(Float32::product, 0))?;
     class_f32.define_method("inspect", method!(Float32::to_string, 0))?;
     let class_f64 = module.define_class("Float64", Default::default())?;
@@ -527,9 +488,9 @@ fn init() -> Result<(), Error> {
     class_f64.define_method("length", method!(Float64::length, 0))?;
     class_f64.define_method("size", method!(Float64::length, 0))?;
     class_f64.define_method("sum", method!(Float64::sum, 0))?;
-    class_f64.define_method("mean", method!(Float64::mean, 0))?;
     class_f64.define_method("prod", method!(Float64::product, 0))?;
     class_f64.define_method("inspect", method!(Float64::to_string, 0))?;
+
 
     eval::<bool>("Rumo::SFloat = Rumo::Float32")?;
     eval::<bool>("Rumo::DFloat = Rumo::Float64")?;

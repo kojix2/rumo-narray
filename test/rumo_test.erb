@@ -200,10 +200,4 @@ class RumoTest < Test::Unit::TestCase
     assert_equal(1, Rumo::<%= type %>.ones(2,3,4).prod)
     <%- end -%>
   end
-
-  test 'mean' do
-    <%- TYPES.each do |type| -%>
-    assert_equal(1, Rumo::<%= type %>.ones(2,3,4).mean)
-    <%- end -%>
-  end
 end
