@@ -9,3 +9,11 @@ As you can see, this is toy junk. Nothing works. I dont have time to build this.
 
 - [numo-narray](https://github.com/ruby-numo/numo-narray) - N-dimensional array for Ruby
 
+
+## Development
+
+```
+rake expand # expand erb template
+rake compile
+rake test
+```
