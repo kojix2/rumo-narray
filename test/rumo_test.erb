@@ -200,4 +200,10 @@ class RumoTest < Test::Unit::TestCase
     assert_equal(1, Rumo::<%= type %>.ones(2,3,4).prod)
     <%- end -%>
   end
+
+  test 'fill' do
+    <%- TYPES.each do |type| -%>
+    assert_equal(48, Rumo::<%= type %>.ones(2,3,4).fill(2).sum)
+    <%- end -%>
+  end
 end

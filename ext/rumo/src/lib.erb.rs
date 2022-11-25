@@ -19,8 +19,8 @@ __END__
 extern crate magnus;
 extern crate ndarray;
 use ndarray::{array, prelude::*, Array, ArrayD, ArrayView, IxDyn};
-
 use magnus::{define_class, define_module, eval, function, method, prelude::*, Error};
+use std::cell::RefCell;
 
 trait NArray {
     fn zeros(dims: Vec<usize>) -> Self;
@@ -33,47 +33,54 @@ trait NArray {
 
 <%- TYPES.each do |type, rust_type| -%>
 
+struct Rs<%= type %> {
+    nda: ArrayD<<%= rust_type %>>,
+}
+
 #[magnus::wrap(class = "Rumo::<%= type %>")]
 struct <%= type %> {
-    nda: ArrayD<<%= rust_type %>>,
+    rc: RefCell<Rs<%= type %>>,
 }
 
 impl NArray for <%= type %> {
     fn zeros(dims: Vec<usize>) -> Self {
-        let mut nda = ArrayD::<<%= rust_type %>>::zeros(IxDyn(&dims));
-        Self { nda }
+        let nda = ArrayD::<<%= rust_type %>>::zeros(IxDyn(&dims));
+        Self { rc: RefCell::new(Rs<%= type %> { nda }) }
     }
     fn ones(dims: Vec<usize>) -> Self {
-        let mut nda = ArrayD::<<%= rust_type %>>::ones(IxDyn(&dims));
-        Self { nda }
+        let nda = ArrayD::<<%= rust_type %>>::ones(IxDyn(&dims));
+        Self { rc: RefCell::new(Rs<%= type %> { nda }) }
     }
     fn shape(&self) -> Vec<usize> {
-        self.nda.shape().to_vec()
+        self.rc.borrow().nda.shape().to_vec()
     }
     fn ndim(&self) -> usize {
-        self.nda.ndim()
+        self.rc.borrow().nda.ndim()
     }
     fn length(&self) -> usize {
-        self.nda.len()
+        self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
-        self.nda.to_string()
+        self.rc.borrow().nda.to_string()
     }
 }
 
 impl <%= type %> {
+    fn fill(&self, value: <%= rust_type %>) {
+        self.rc.borrow_mut().nda.fill(value)
+    }
     fn sum(&self) -> <%= rust_type %> {
-        self.nda.sum()
+        self.rc.borrow().nda.sum()
     }
     fn product(&self) -> <%= rust_type %> {
-        self.nda.product()
+        self.rc.borrow().nda.product()
     }
     <%- if type =~ /Float/ -%>
     fn var(&self, ddof: <%= rust_type %>) -> <%= rust_type %> {
-        self.nda.var(ddof)
+        self.rc.borrow().nda.var(ddof)
     }
     fn std(&self, ddof: <%= rust_type %>) -> <%= rust_type %> {
-        self.nda.std(ddof)
+        self.rc.borrow().nda.std(ddof)
     }
     <%- end -%>
 }
@@ -91,8 +98,13 @@ fn init() -> Result<(), Error> {
     class_<%= rust_type %>.define_method("ndim", method!(<%= type %>::ndim, 0))?;
     class_<%= rust_type %>.define_method("length", method!(<%= type %>::length, 0))?;
     class_<%= rust_type %>.define_method("size", method!(<%= type %>::length, 0))?;
+    class_<%= rust_type %>.define_method("fill", method!(<%= type %>::fill, 1))?;
     class_<%= rust_type %>.define_method("sum", method!(<%= type %>::sum, 0))?;
     class_<%= rust_type %>.define_method("prod", method!(<%= type %>::product, 0))?;
+    <%- if type =~ /Float/ -%>
+    class_<%= rust_type %>.define_method("var", method!(<%= type %>::var, 1))?;
+    class_<%= rust_type %>.define_method("std", method!(<%= type %>::std, 1))?;
+    <%- end -%>
     class_<%= rust_type %>.define_method("inspect", method!(<%= type %>::to_string, 0))?;
 <% end %>
 

@@ -474,4 +474,19 @@ class RumoTest < Test::Unit::TestCase
     assert_equal(1, Rumo::Float64.ones(2,3,4).prod)
     assert_equal(1, Rumo::DFloat.ones(2,3,4).prod)
   end
+
+  test 'fill' do
+    assert_equal(47, Rumo::UInt8.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::Int8.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::UInt16.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::Int16.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::UInt32.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::Int32.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::UInt64.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::Int64.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::Float32.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::SFloat.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::Float64.ones(2,3,4).fill(2).sum)
+    assert_equal(47, Rumo::DFloat.ones(2,3,4).fill(2).sum)
+  end
 end

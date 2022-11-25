@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
-require 'rumo'
+require 'rumo/narray'
 
 require 'test-unit'
