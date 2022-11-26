@@ -402,13 +402,11 @@ impl NArray for Float32 {
 
 impl Float32 {
     fn linspace(start: f32, end: f32, n: usize) -> Self {
-        let nda1 = Array1::<f32>::linspace(start, end, n);
-        let nda = ArrayD::<f32>::from_shape_vec(IxDyn(&[n]), nda1.to_vec()).unwrap();
+        let nda = Array1::<f32>::linspace(start, end, n).into_dyn();
         Self { rc: RefCell::new(RsFloat32 { nda }) }
     }
     fn range(start: f32, end: f32, step: f32) -> Self {
-        let nda1 = Array1::<f32>::range(start, end, step);
-        let nda = ArrayD::<f32>::from_shape_vec(IxDyn(&[nda1.len()]), nda1.to_vec()).unwrap();
+        let nda = Array1::<f32>::range(start, end, step).into_dyn();
         Self { rc: RefCell::new(RsFloat32 { nda }) }
     }
     fn fill(&self, value: f32) {
@@ -462,13 +460,11 @@ impl NArray for Float64 {
 
 impl Float64 {
     fn linspace(start: f64, end: f64, n: usize) -> Self {
-        let nda1 = Array1::<f64>::linspace(start, end, n);
-        let nda = ArrayD::<f64>::from_shape_vec(IxDyn(&[n]), nda1.to_vec()).unwrap();
+        let nda = Array1::<f64>::linspace(start, end, n).into_dyn();
         Self { rc: RefCell::new(RsFloat64 { nda }) }
     }
     fn range(start: f64, end: f64, step: f64) -> Self {
-        let nda1 = Array1::<f64>::range(start, end, step);
-        let nda = ArrayD::<f64>::from_shape_vec(IxDyn(&[nda1.len()]), nda1.to_vec()).unwrap();
+        let nda = Array1::<f64>::range(start, end, step).into_dyn();
         Self { rc: RefCell::new(RsFloat64 { nda }) }
     }
     fn fill(&self, value: f64) {

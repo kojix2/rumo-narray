@@ -68,13 +68,11 @@ impl NArray for <%= type %> {
 impl <%= type %> {
     <%- if type =~ /Float/ -%>
     fn linspace(start: <%= rust_type %>, end: <%= rust_type %>, n: usize) -> Self {
-        let nda1 = Array1::<<%= rust_type %>>::linspace(start, end, n);
-        let nda = ArrayD::<<%= rust_type %>>::from_shape_vec(IxDyn(&[n]), nda1.to_vec()).unwrap();
+        let nda = Array1::<<%= rust_type %>>::linspace(start, end, n).into_dyn();
         Self { rc: RefCell::new(Rs<%= type %> { nda }) }
     }
     fn range(start: <%= rust_type %>, end: <%= rust_type %>, step: <%= rust_type %>) -> Self {
-        let nda1 = Array1::<<%= rust_type %>>::range(start, end, step);
-        let nda = ArrayD::<<%= rust_type %>>::from_shape_vec(IxDyn(&[nda1.len()]), nda1.to_vec()).unwrap();
+        let nda = Array1::<<%= rust_type %>>::range(start, end, step).into_dyn();
         Self { rc: RefCell::new(Rs<%= type %> { nda }) }
     }
     <%- end -%>
