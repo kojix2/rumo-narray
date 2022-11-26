@@ -11,7 +11,7 @@ trait NArray {
     fn ones(dims: Vec<usize>) -> Self;
     fn shape(&self) -> Vec<usize>;
     fn ndim(&self) -> usize;
-    fn length(&self) -> usize;
+    fn len(&self) -> usize;
     fn to_string(&self) -> String;
 }
 
@@ -40,7 +40,7 @@ impl NArray for UInt8 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -84,7 +84,7 @@ impl NArray for Int8 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -128,7 +128,7 @@ impl NArray for UInt16 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -172,7 +172,7 @@ impl NArray for Int16 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -216,7 +216,7 @@ impl NArray for UInt32 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -260,7 +260,7 @@ impl NArray for Int32 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -304,7 +304,7 @@ impl NArray for UInt64 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -348,7 +348,7 @@ impl NArray for Int64 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -392,7 +392,7 @@ impl NArray for Float32 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -442,7 +442,7 @@ impl NArray for Float64 {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -478,8 +478,8 @@ fn init() -> Result<(), Error> {
     class_u8.define_singleton_method("_ones", function!(UInt8::ones, 1))?;
     class_u8.define_method("shape", method!(UInt8::shape, 0))?;
     class_u8.define_method("ndim", method!(UInt8::ndim, 0))?;
-    class_u8.define_method("length", method!(UInt8::length, 0))?;
-    class_u8.define_method("size", method!(UInt8::length, 0))?;
+    class_u8.define_method("length", method!(UInt8::len, 0))?;
+    class_u8.define_method("size", method!(UInt8::len, 0))?;
     class_u8.define_method("fill", method!(UInt8::fill, 1))?;
     class_u8.define_method("sum", method!(UInt8::sum, 0))?;
     class_u8.define_method("prod", method!(UInt8::product, 0))?;
@@ -490,8 +490,8 @@ fn init() -> Result<(), Error> {
     class_i8.define_singleton_method("_ones", function!(Int8::ones, 1))?;
     class_i8.define_method("shape", method!(Int8::shape, 0))?;
     class_i8.define_method("ndim", method!(Int8::ndim, 0))?;
-    class_i8.define_method("length", method!(Int8::length, 0))?;
-    class_i8.define_method("size", method!(Int8::length, 0))?;
+    class_i8.define_method("length", method!(Int8::len, 0))?;
+    class_i8.define_method("size", method!(Int8::len, 0))?;
     class_i8.define_method("fill", method!(Int8::fill, 1))?;
     class_i8.define_method("sum", method!(Int8::sum, 0))?;
     class_i8.define_method("prod", method!(Int8::product, 0))?;
@@ -502,8 +502,8 @@ fn init() -> Result<(), Error> {
     class_u16.define_singleton_method("_ones", function!(UInt16::ones, 1))?;
     class_u16.define_method("shape", method!(UInt16::shape, 0))?;
     class_u16.define_method("ndim", method!(UInt16::ndim, 0))?;
-    class_u16.define_method("length", method!(UInt16::length, 0))?;
-    class_u16.define_method("size", method!(UInt16::length, 0))?;
+    class_u16.define_method("length", method!(UInt16::len, 0))?;
+    class_u16.define_method("size", method!(UInt16::len, 0))?;
     class_u16.define_method("fill", method!(UInt16::fill, 1))?;
     class_u16.define_method("sum", method!(UInt16::sum, 0))?;
     class_u16.define_method("prod", method!(UInt16::product, 0))?;
@@ -514,8 +514,8 @@ fn init() -> Result<(), Error> {
     class_i16.define_singleton_method("_ones", function!(Int16::ones, 1))?;
     class_i16.define_method("shape", method!(Int16::shape, 0))?;
     class_i16.define_method("ndim", method!(Int16::ndim, 0))?;
-    class_i16.define_method("length", method!(Int16::length, 0))?;
-    class_i16.define_method("size", method!(Int16::length, 0))?;
+    class_i16.define_method("length", method!(Int16::len, 0))?;
+    class_i16.define_method("size", method!(Int16::len, 0))?;
     class_i16.define_method("fill", method!(Int16::fill, 1))?;
     class_i16.define_method("sum", method!(Int16::sum, 0))?;
     class_i16.define_method("prod", method!(Int16::product, 0))?;
@@ -526,8 +526,8 @@ fn init() -> Result<(), Error> {
     class_u32.define_singleton_method("_ones", function!(UInt32::ones, 1))?;
     class_u32.define_method("shape", method!(UInt32::shape, 0))?;
     class_u32.define_method("ndim", method!(UInt32::ndim, 0))?;
-    class_u32.define_method("length", method!(UInt32::length, 0))?;
-    class_u32.define_method("size", method!(UInt32::length, 0))?;
+    class_u32.define_method("length", method!(UInt32::len, 0))?;
+    class_u32.define_method("size", method!(UInt32::len, 0))?;
     class_u32.define_method("fill", method!(UInt32::fill, 1))?;
     class_u32.define_method("sum", method!(UInt32::sum, 0))?;
     class_u32.define_method("prod", method!(UInt32::product, 0))?;
@@ -538,8 +538,8 @@ fn init() -> Result<(), Error> {
     class_i32.define_singleton_method("_ones", function!(Int32::ones, 1))?;
     class_i32.define_method("shape", method!(Int32::shape, 0))?;
     class_i32.define_method("ndim", method!(Int32::ndim, 0))?;
-    class_i32.define_method("length", method!(Int32::length, 0))?;
-    class_i32.define_method("size", method!(Int32::length, 0))?;
+    class_i32.define_method("length", method!(Int32::len, 0))?;
+    class_i32.define_method("size", method!(Int32::len, 0))?;
     class_i32.define_method("fill", method!(Int32::fill, 1))?;
     class_i32.define_method("sum", method!(Int32::sum, 0))?;
     class_i32.define_method("prod", method!(Int32::product, 0))?;
@@ -550,8 +550,8 @@ fn init() -> Result<(), Error> {
     class_u64.define_singleton_method("_ones", function!(UInt64::ones, 1))?;
     class_u64.define_method("shape", method!(UInt64::shape, 0))?;
     class_u64.define_method("ndim", method!(UInt64::ndim, 0))?;
-    class_u64.define_method("length", method!(UInt64::length, 0))?;
-    class_u64.define_method("size", method!(UInt64::length, 0))?;
+    class_u64.define_method("length", method!(UInt64::len, 0))?;
+    class_u64.define_method("size", method!(UInt64::len, 0))?;
     class_u64.define_method("fill", method!(UInt64::fill, 1))?;
     class_u64.define_method("sum", method!(UInt64::sum, 0))?;
     class_u64.define_method("prod", method!(UInt64::product, 0))?;
@@ -562,8 +562,8 @@ fn init() -> Result<(), Error> {
     class_i64.define_singleton_method("_ones", function!(Int64::ones, 1))?;
     class_i64.define_method("shape", method!(Int64::shape, 0))?;
     class_i64.define_method("ndim", method!(Int64::ndim, 0))?;
-    class_i64.define_method("length", method!(Int64::length, 0))?;
-    class_i64.define_method("size", method!(Int64::length, 0))?;
+    class_i64.define_method("length", method!(Int64::len, 0))?;
+    class_i64.define_method("size", method!(Int64::len, 0))?;
     class_i64.define_method("fill", method!(Int64::fill, 1))?;
     class_i64.define_method("sum", method!(Int64::sum, 0))?;
     class_i64.define_method("prod", method!(Int64::product, 0))?;
@@ -574,8 +574,8 @@ fn init() -> Result<(), Error> {
     class_f32.define_singleton_method("_ones", function!(Float32::ones, 1))?;
     class_f32.define_method("shape", method!(Float32::shape, 0))?;
     class_f32.define_method("ndim", method!(Float32::ndim, 0))?;
-    class_f32.define_method("length", method!(Float32::length, 0))?;
-    class_f32.define_method("size", method!(Float32::length, 0))?;
+    class_f32.define_method("length", method!(Float32::len, 0))?;
+    class_f32.define_method("size", method!(Float32::len, 0))?;
     class_f32.define_method("fill", method!(Float32::fill, 1))?;
     class_f32.define_method("sum", method!(Float32::sum, 0))?;
     class_f32.define_method("prod", method!(Float32::product, 0))?;
@@ -588,8 +588,8 @@ fn init() -> Result<(), Error> {
     class_f64.define_singleton_method("_ones", function!(Float64::ones, 1))?;
     class_f64.define_method("shape", method!(Float64::shape, 0))?;
     class_f64.define_method("ndim", method!(Float64::ndim, 0))?;
-    class_f64.define_method("length", method!(Float64::length, 0))?;
-    class_f64.define_method("size", method!(Float64::length, 0))?;
+    class_f64.define_method("length", method!(Float64::len, 0))?;
+    class_f64.define_method("size", method!(Float64::len, 0))?;
     class_f64.define_method("fill", method!(Float64::fill, 1))?;
     class_f64.define_method("sum", method!(Float64::sum, 0))?;
     class_f64.define_method("prod", method!(Float64::product, 0))?;

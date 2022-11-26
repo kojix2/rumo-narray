@@ -27,7 +27,7 @@ trait NArray {
     fn ones(dims: Vec<usize>) -> Self;
     fn shape(&self) -> Vec<usize>;
     fn ndim(&self) -> usize;
-    fn length(&self) -> usize;
+    fn len(&self) -> usize;
     fn to_string(&self) -> String;
 }
 
@@ -57,7 +57,7 @@ impl NArray for <%= type %> {
     fn ndim(&self) -> usize {
         self.rc.borrow().nda.ndim()
     }
-    fn length(&self) -> usize {
+    fn len(&self) -> usize {
         self.rc.borrow().nda.len()
     }
     fn to_string(&self) -> String {
@@ -96,8 +96,8 @@ fn init() -> Result<(), Error> {
     class_<%= rust_type %>.define_singleton_method("_ones", function!(<%= type %>::ones, 1))?;
     class_<%= rust_type %>.define_method("shape", method!(<%= type %>::shape, 0))?;
     class_<%= rust_type %>.define_method("ndim", method!(<%= type %>::ndim, 0))?;
-    class_<%= rust_type %>.define_method("length", method!(<%= type %>::length, 0))?;
-    class_<%= rust_type %>.define_method("size", method!(<%= type %>::length, 0))?;
+    class_<%= rust_type %>.define_method("length", method!(<%= type %>::len, 0))?;
+    class_<%= rust_type %>.define_method("size", method!(<%= type %>::len, 0))?;
     class_<%= rust_type %>.define_method("fill", method!(<%= type %>::fill, 1))?;
     class_<%= rust_type %>.define_method("sum", method!(<%= type %>::sum, 0))?;
     class_<%= rust_type %>.define_method("prod", method!(<%= type %>::product, 0))?;
