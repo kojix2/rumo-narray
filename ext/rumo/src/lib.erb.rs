@@ -82,6 +82,9 @@ impl <%= type %> {
     fn sum(&self) -> <%= rust_type %> {
         self.rc.borrow().nda.sum()
     }
+    fn mean(&self) -> <%= rust_type %> {
+        self.rc.borrow().nda.mean().unwrap()
+    }
     fn product(&self) -> <%= rust_type %> {
         self.rc.borrow().nda.product()
     }
@@ -114,6 +117,7 @@ fn init() -> Result<(), Error> {
     class_<%= rust_type %>.define_method("size", method!(<%= type %>::len, 0))?;
     class_<%= rust_type %>.define_method("fill", method!(<%= type %>::fill, 1))?;
     class_<%= rust_type %>.define_method("sum", method!(<%= type %>::sum, 0))?;
+    class_<%= rust_type %>.define_method("mean", method!(<%= type %>::mean, 0))?;
     class_<%= rust_type %>.define_method("prod", method!(<%= type %>::product, 0))?;
     <%- if type =~ /Float/ -%>
     class_<%= rust_type %>.define_method("var", method!(<%= type %>::var, 1))?;
