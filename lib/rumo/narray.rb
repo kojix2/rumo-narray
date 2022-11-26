@@ -23,6 +23,10 @@ module Rumo
     def ones(*args)
       _ones(args)
     end
+
+    def reshape(*args)
+      _reshape(args)
+    end
   end
 
   # FIXME: This is a workaround

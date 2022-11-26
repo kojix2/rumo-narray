@@ -79,6 +79,10 @@ impl <%= type %> {
     fn fill(&self, value: <%= rust_type %>) {
         self.rc.borrow_mut().nda.fill(value)
     }
+    fn into_shape(&self, shape: Vec<usize>) -> Self {
+        let nda = self.rc.borrow().nda.clone().into_shape(IxDyn(&shape)).unwrap();
+        Self { rc: RefCell::new(Rs<%= type %> { nda }) }
+    }
     fn sum(&self) -> <%= rust_type %> {
         self.rc.borrow().nda.sum()
     }
@@ -111,11 +115,12 @@ fn init() -> Result<(), Error> {
     class_<%= rust_type %>.define_singleton_method("linspace", function!(<%= type %>::linspace, 3))?;
     class_<%= rust_type %>.define_singleton_method("_range", function!(<%= type %>::range, 3))?;
     <%- end -%>
+    class_<%= rust_type %>.define_method("fill", method!(<%= type %>::fill, 1))?;
     class_<%= rust_type %>.define_method("shape", method!(<%= type %>::shape, 0))?;
     class_<%= rust_type %>.define_method("ndim", method!(<%= type %>::ndim, 0))?;
     class_<%= rust_type %>.define_method("length", method!(<%= type %>::len, 0))?;
     class_<%= rust_type %>.define_method("size", method!(<%= type %>::len, 0))?;
-    class_<%= rust_type %>.define_method("fill", method!(<%= type %>::fill, 1))?;
+    class_<%= rust_type %>.define_method("_reshape", method!(<%= type %>::into_shape, 1))?;
     class_<%= rust_type %>.define_method("sum", method!(<%= type %>::sum, 0))?;
     class_<%= rust_type %>.define_method("mean", method!(<%= type %>::mean, 0))?;
     class_<%= rust_type %>.define_method("prod", method!(<%= type %>::product, 0))?;
