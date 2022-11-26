@@ -55,8 +55,8 @@ impl UInt8 {
     fn sum(&self) -> u8 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> u8 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<u8> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> u8 {
         self.rc.borrow().nda.product()
@@ -102,8 +102,8 @@ impl Int8 {
     fn sum(&self) -> i8 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> i8 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<i8> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> i8 {
         self.rc.borrow().nda.product()
@@ -149,8 +149,8 @@ impl UInt16 {
     fn sum(&self) -> u16 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> u16 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<u16> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> u16 {
         self.rc.borrow().nda.product()
@@ -196,8 +196,8 @@ impl Int16 {
     fn sum(&self) -> i16 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> i16 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<i16> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> i16 {
         self.rc.borrow().nda.product()
@@ -243,8 +243,8 @@ impl UInt32 {
     fn sum(&self) -> u32 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> u32 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<u32> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> u32 {
         self.rc.borrow().nda.product()
@@ -290,8 +290,8 @@ impl Int32 {
     fn sum(&self) -> i32 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> i32 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<i32> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> i32 {
         self.rc.borrow().nda.product()
@@ -337,8 +337,8 @@ impl UInt64 {
     fn sum(&self) -> u64 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> u64 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<u64> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> u64 {
         self.rc.borrow().nda.product()
@@ -384,8 +384,8 @@ impl Int64 {
     fn sum(&self) -> i64 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> i64 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<i64> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> i64 {
         self.rc.borrow().nda.product()
@@ -439,8 +439,8 @@ impl Float32 {
     fn sum(&self) -> f32 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> f32 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<f32> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> f32 {
         self.rc.borrow().nda.product()
@@ -500,8 +500,8 @@ impl Float64 {
     fn sum(&self) -> f64 {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> f64 {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<f64> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> f64 {
         self.rc.borrow().nda.product()

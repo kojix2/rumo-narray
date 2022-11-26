@@ -82,8 +82,8 @@ impl <%= type %> {
     fn sum(&self) -> <%= rust_type %> {
         self.rc.borrow().nda.sum()
     }
-    fn mean(&self) -> <%= rust_type %> {
-        self.rc.borrow().nda.mean().unwrap()
+    fn mean(&self) -> Option<<%= rust_type %>> {
+        self.rc.borrow().nda.mean()
     }
     fn product(&self) -> <%= rust_type %> {
         self.rc.borrow().nda.product()
