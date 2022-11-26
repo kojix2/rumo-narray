@@ -489,4 +489,11 @@ class RumoTest < Test::Unit::TestCase
     assert_equal(48, Rumo::Float64.ones(2,3,4).fill(2).sum)
     assert_equal(48, Rumo::DFloat.ones(2,3,4).fill(2).sum)
   end
+
+  test 'linspace' do
+    assert_equal(10, Rumo::Float32.linspace(0, 4, 5).sum)
+    assert_equal(10, Rumo::SFloat.linspace(0, 4, 5).sum)
+    assert_equal(10, Rumo::Float64.linspace(0, 4, 5).sum)
+    assert_equal(10, Rumo::DFloat.linspace(0, 4, 5).sum)
+  end
 end

@@ -1,5 +1,6 @@
 require 'erb'
 TYPES = %w[UInt8 Int8 UInt16 Int16 UInt32 Int32 UInt64 Int64 Float32 SFloat Float64 DFloat]
+FLOAT_TYPES = TYPES.filter{|t| t =~ /Float/}
 code = ERB.new(DATA.read, trim_mode: '-').result(binding)
 Dir.chdir(__dir__) { File.write("rumo_test.rb", code) }
 __END__
@@ -204,6 +205,12 @@ class RumoTest < Test::Unit::TestCase
   test 'fill' do
     <%- TYPES.each do |type| -%>
     assert_equal(48, Rumo::<%= type %>.ones(2,3,4).fill(2).sum)
+    <%- end -%>
+  end
+
+  test 'linspace' do
+    <%- FLOAT_TYPES.each do |type| -%>
+    assert_equal(10, Rumo::<%= type %>.linspace(0, 4, 5).sum)
     <%- end -%>
   end
 end

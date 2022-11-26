@@ -7,6 +7,11 @@ module Rumo
   class Error < StandardError; end
 
   module InitWithVararg
+    def self.extended(obj)
+      obj.private_class_method :_zeros
+      obj.private_class_method :_ones
+    end
+
     def new(*args)
       _zeros(args)
     end

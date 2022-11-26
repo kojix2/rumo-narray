@@ -18,8 +18,8 @@ __END__
 
 extern crate magnus;
 extern crate ndarray;
-use ndarray::{array, prelude::*, Array, ArrayD, ArrayView, IxDyn};
-use magnus::{define_class, define_module, eval, function, method, prelude::*, Error};
+use ndarray::{Array1, ArrayD, IxDyn};
+use magnus::{define_module, eval, function, method, prelude::*, Error};
 use std::cell::RefCell;
 
 trait NArray {
@@ -66,6 +66,18 @@ impl NArray for <%= type %> {
 }
 
 impl <%= type %> {
+    <%- if type =~ /Float/ -%>
+    fn linspace(start: <%= rust_type %>, end: <%= rust_type %>, n: usize) -> Self {
+        let nda1 = Array1::<<%= rust_type %>>::linspace(start, end, n);
+        let nda = ArrayD::<<%= rust_type %>>::from_shape_vec(IxDyn(&[n]), nda1.to_vec()).unwrap();
+        Self { rc: RefCell::new(Rs<%= type %> { nda }) }
+    }
+    fn range(start: <%= rust_type %>, end: <%= rust_type %>, step: <%= rust_type %>) -> Self {
+        let nda1 = Array1::<<%= rust_type %>>::range(start, end, step);
+        let nda = ArrayD::<<%= rust_type %>>::from_shape_vec(IxDyn(&[nda1.len()]), nda1.to_vec()).unwrap();
+        Self { rc: RefCell::new(Rs<%= type %> { nda }) }
+    }
+    <%- end -%>
     fn fill(&self, value: <%= rust_type %>) {
         self.rc.borrow_mut().nda.fill(value)
     }
@@ -94,6 +106,10 @@ fn init() -> Result<(), Error> {
     let class_<%= rust_type %> = module.define_class("<%= type %>", Default::default())?;
     class_<%= rust_type %>.define_singleton_method("_zeros", function!(<%= type %>::zeros, 1))?;
     class_<%= rust_type %>.define_singleton_method("_ones", function!(<%= type %>::ones, 1))?;
+    <%- if type =~ /Float/ -%>
+    class_<%= rust_type %>.define_singleton_method("linspace", function!(<%= type %>::linspace, 3))?;
+    class_<%= rust_type %>.define_singleton_method("_range", function!(<%= type %>::range, 3))?;
+    <%- end -%>
     class_<%= rust_type %>.define_method("shape", method!(<%= type %>::shape, 0))?;
     class_<%= rust_type %>.define_method("ndim", method!(<%= type %>::ndim, 0))?;
     class_<%= rust_type %>.define_method("length", method!(<%= type %>::len, 0))?;

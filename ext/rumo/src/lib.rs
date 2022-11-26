@@ -2,8 +2,8 @@
 
 extern crate magnus;
 extern crate ndarray;
-use ndarray::{array, prelude::*, Array, ArrayD, ArrayView, IxDyn};
-use magnus::{define_class, define_module, eval, function, method, prelude::*, Error};
+use ndarray::{Array1, ArrayD, IxDyn};
+use magnus::{define_module, eval, function, method, prelude::*, Error};
 use std::cell::RefCell;
 
 trait NArray {
@@ -401,6 +401,16 @@ impl NArray for Float32 {
 }
 
 impl Float32 {
+    fn linspace(start: f32, end: f32, n: usize) -> Self {
+        let nda1 = Array1::<f32>::linspace(start, end, n);
+        let nda = ArrayD::<f32>::from_shape_vec(IxDyn(&[n]), nda1.to_vec()).unwrap();
+        Self { rc: RefCell::new(RsFloat32 { nda }) }
+    }
+    fn range(start: f32, end: f32, step: f32) -> Self {
+        let nda1 = Array1::<f32>::range(start, end, step);
+        let nda = ArrayD::<f32>::from_shape_vec(IxDyn(&[nda1.len()]), nda1.to_vec()).unwrap();
+        Self { rc: RefCell::new(RsFloat32 { nda }) }
+    }
     fn fill(&self, value: f32) {
         self.rc.borrow_mut().nda.fill(value)
     }
@@ -451,6 +461,16 @@ impl NArray for Float64 {
 }
 
 impl Float64 {
+    fn linspace(start: f64, end: f64, n: usize) -> Self {
+        let nda1 = Array1::<f64>::linspace(start, end, n);
+        let nda = ArrayD::<f64>::from_shape_vec(IxDyn(&[n]), nda1.to_vec()).unwrap();
+        Self { rc: RefCell::new(RsFloat64 { nda }) }
+    }
+    fn range(start: f64, end: f64, step: f64) -> Self {
+        let nda1 = Array1::<f64>::range(start, end, step);
+        let nda = ArrayD::<f64>::from_shape_vec(IxDyn(&[nda1.len()]), nda1.to_vec()).unwrap();
+        Self { rc: RefCell::new(RsFloat64 { nda }) }
+    }
     fn fill(&self, value: f64) {
         self.rc.borrow_mut().nda.fill(value)
     }
@@ -572,6 +592,8 @@ fn init() -> Result<(), Error> {
     let class_f32 = module.define_class("Float32", Default::default())?;
     class_f32.define_singleton_method("_zeros", function!(Float32::zeros, 1))?;
     class_f32.define_singleton_method("_ones", function!(Float32::ones, 1))?;
+    class_f32.define_singleton_method("linspace", function!(Float32::linspace, 3))?;
+    class_f32.define_singleton_method("_range", function!(Float32::range, 3))?;
     class_f32.define_method("shape", method!(Float32::shape, 0))?;
     class_f32.define_method("ndim", method!(Float32::ndim, 0))?;
     class_f32.define_method("length", method!(Float32::len, 0))?;
@@ -586,6 +608,8 @@ fn init() -> Result<(), Error> {
     let class_f64 = module.define_class("Float64", Default::default())?;
     class_f64.define_singleton_method("_zeros", function!(Float64::zeros, 1))?;
     class_f64.define_singleton_method("_ones", function!(Float64::ones, 1))?;
+    class_f64.define_singleton_method("linspace", function!(Float64::linspace, 3))?;
+    class_f64.define_singleton_method("_range", function!(Float64::range, 3))?;
     class_f64.define_method("shape", method!(Float64::shape, 0))?;
     class_f64.define_method("ndim", method!(Float64::ndim, 0))?;
     class_f64.define_method("length", method!(Float64::len, 0))?;
